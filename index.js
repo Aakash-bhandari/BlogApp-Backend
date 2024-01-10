@@ -5,16 +5,12 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import Router from './routes/route.js';
 const app = express();
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://blognex.onrender.com');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
 const port = 8000;
-
-
-app.use(cors());
+app.use(cors({
+  origin: 'https://blognex.onrender.com',
+  methods: 'GET, POST, PUT, DELETE',
+  credentials: true,
+}));
 app.use(bodyParser.json({extended:true}))
 app.use(bodyParser.urlencoded({extended:true}))
 app.use('/',Router)
