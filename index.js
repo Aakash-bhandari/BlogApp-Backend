@@ -4,7 +4,13 @@ import dotenv from "dotenv";
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import Router from './routes/route.js';
-const app = express()
+const app = express();
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://blognex.onrender.com');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 const port = 8000;
 
 
